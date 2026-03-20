@@ -38,6 +38,7 @@ from android_world.agents import seeact
 from android_world.agents import t3a
 from android_world.env import env_launcher
 from android_world.env import interface
+from android_world.agents import groq_agent
 
 logging.set_verbosity(logging.WARNING)
 
@@ -178,6 +179,8 @@ def _get_agent(
   # SeeAct.
   elif _AGENT_NAME.value == 'seeact':
     agent = seeact.SeeAct(env)
+  elif _AGENT_NAME.value == 'groq':
+    agent = groq_agent.GroqAgent(env=env, model_name="openai/gpt-oss-20b", api_key="")
 
   if not agent:
     raise ValueError(f'Unknown agent: {_AGENT_NAME.value}')
